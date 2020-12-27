@@ -1,0 +1,16 @@
+   
+    map $ssl_preread_server_name $backend_name {
+        domain1 backend1;
+        default backend1;
+    }
+
+    upstream backend1 {
+        server 127.0.0.1:1234;
+    }
+
+    server {
+        listen 443 reuseport;
+        listen [::]:443 reuseport;
+        proxy_pass  $backend_name;
+        ssl_preread on;
+    }
