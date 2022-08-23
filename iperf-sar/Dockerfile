@@ -1,5 +1,5 @@
-FROM networkstatic/iperf3
+FROM centos:7
 
-RUN apt update && apt install sysstat iproute2 -y --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+RUN yum install -y vim sysstat iperf3 net-tools telnet && yum clean all -y && rm -fr /var/cache
+
 
