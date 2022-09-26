@@ -18,4 +18,4 @@ COPY --from=fetcher /source/novnc/core /static/core
 COPY --from=fetcher /source/novnc/vendor /static/vendor
 COPY --from=fetcher /source/novnc/*.html /static/
 
-CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=", "--www-prefix="]
+CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=/k8s", "--www-prefix="]
