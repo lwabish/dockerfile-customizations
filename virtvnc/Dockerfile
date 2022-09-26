@@ -1,6 +1,6 @@
 FROM alpine:3.16.2 as fetcher
 
-ARG NOVNC="v1.3.0"
+ARG NOVNC="v1.1.0"
 
 WORKDIR /source
 
@@ -17,5 +17,6 @@ COPY --from=fetcher /source/novnc/app /static/app
 COPY --from=fetcher /source/novnc/core /static/core
 COPY --from=fetcher /source/novnc/vendor /static/vendor
 COPY --from=fetcher /source/novnc/*.html /static/
+ADD index.html /static/
 
 CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=/k8s", "--www-prefix="]
