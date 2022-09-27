@@ -1,6 +1,6 @@
 FROM alpine:3.16.2 as fetcher
 
-ARG NOVNC="v1.1.0"
+ARG NOVNC="v1.2.0"
 
 WORKDIR /source
 
