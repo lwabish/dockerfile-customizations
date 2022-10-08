@@ -84,7 +84,7 @@ spec:
       containers:
         - name: virtvnc
           imagePullPolicy: Always
-          image: lwabish/virtvnc:1.21.14-1.1.0
+          image: lwabish/virtvnc:1.21.14-1.3.0
           livenessProbe:
             httpGet:
               port: 8001
