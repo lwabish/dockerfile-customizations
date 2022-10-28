@@ -1,7 +1,7 @@
-registry=""
+registry="lwabish"
 
 build:
-	docker build -t $(registry)/nginx-stream-sni:latest
+	docker build -t $(registry)/nginx-stream-sni:latest .
 
 push:
 	docker push $(registry)/nginx-stream-sni:latest
