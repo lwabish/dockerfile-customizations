@@ -2,7 +2,7 @@ FROM docker:24.0.7-cli-alpine3.18
 
 WORKDIR /data
 
-RUN apk add --update ca-certificates curl bash openssh-client
+RUN apk add --update --no-cache ca-certificates curl bash openssh-client busybox-extras
 
 # kubectl
 ARG KUBE_VERSION="v1.24.10"
@@ -30,6 +30,5 @@ RUN mkdir -p /root/.ssh \
     && chmod 700 /root/.ssh \
     && ssh-keygen -t rsa -f /root/.ssh/id_rsa -q -P ""
 
-RUN rm /var/cache/apk/*
-
 ENTRYPOINT [ "/bin/bash" ]
+
