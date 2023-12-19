@@ -1,6 +1,6 @@
 FROM alpine:3.16.2 as fetcher
 
-ARG NOVNC="v1.3.0"
+ARG NOVNC="v1.4.0"
 
 WORKDIR /source
 
@@ -13,9 +13,8 @@ FROM bitnami/kubectl:1.21.14 as app
 
 WORKDIR /static
 
-COPY --from=fetcher /source/novnc/app /static/app
-COPY --from=fetcher /source/novnc/core /static/core
-COPY --from=fetcher /source/novnc/vendor /static/vendor
-COPY --from=fetcher /source/novnc/*.html /static/
+COPY --from=fetcher /source/novnc /static
 
-CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=/k8s", "--www-prefix="]
+# api-prefix需要是www-prefix的子集
+# 如果不通，看console日志看websocket拼接的地址是什么，是否可达
+CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=/vnc/k8s", "--www-prefix=/vnc/"]

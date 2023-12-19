@@ -1,9 +1,10 @@
-registry=dockerhub.kubekey.local:7443/kubevirt/
+registry=dockerhub.kubekey.local:7443/kubevirt
+tag=1.1.0
 
 default: build push
 
 build:
-	docker build -t $(registry)/virtvnc:1.21.14-1.3.0
+	docker build -t $(registry)/virtvnc:$(tag) .
 
 push:
-	docker push $(registry)/virtvnc:1.21.14-1.3.0
+	docker push $(registry)/virtvnc:$(tag)
